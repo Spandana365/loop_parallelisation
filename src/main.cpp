@@ -1,19 +1,7 @@
-#include "LoopParallelPass.h"
+#include "mlir/Tools/mlir-opt/MlirOptMain.h"
+#include "mlir/Pass/PassRegistry.h"
 
-#include <iostream>
-
-int main(int argc, char *argv[]) {
-
-    if(argc != 2) {
-
-        std::cout
-            << "Usage:\n"
-            << "./detector file.mlir\n";
-
-        return 1;
-    }
-
-    analyzeMLIR(argv[1]);
-
-    return 0;
+int main(int argc, char **argv) {
+    // This automatically handles file reading, parsing, and pass execution
+    return mlir::MlirOptMain(argc, argv, "Loop Parallelizer Tool", /*preloadDialects=*/true);
 }
